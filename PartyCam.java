@@ -113,7 +113,8 @@ public class PartyCam extends JPanel implements Runnable
             //ffmpeg.exe -y -f vfwcap -r 25 -i 0 image.jpg
             String[] windows = new String[]{"ffmpeg.exe", "-y", "-f", "vfwcap", "-r", "25", "-i", "0", name};
             String[] linux = new String[]{"fswebcam", "--no-banner", "-r", "1824x984", name};
-            Runtime.getRuntime().exec(linux);
+            Process p = Runtime.getRuntime().exec(linux);
+		p.waitFor();
         }catch (Exception e)
         {
             e.printStackTrace();
