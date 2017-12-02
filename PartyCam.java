@@ -39,12 +39,13 @@ public class PartyCam extends JPanel implements Runnable
                     takePick("image.jpg");
                     tick = 0;
                 }
-                BufferedImage img = null;
+		if(tick < 5){
                 try {
                     image = ImageIO.read(new File("image.jpg"));
                 } catch (IOException e) {
                 	e.printStackTrace();
 		}
+}
                 repaint();
                 Thread.sleep(1000);
             }
@@ -63,10 +64,12 @@ public class PartyCam extends JPanel implements Runnable
         try {
             int y = 0;
             int x = 0;
-
+	    if(image != null)
+		{
             g2d.drawImage(image, // draw it
                     WIDTH/2 - (image.getWidth()/  2), HEIGHT/2 - (image.getHeight() /2),
                     null);
+		}
             int left = max - tick;
             if (left < 20) {
                 g2d.setColor(Color.BLACK);
